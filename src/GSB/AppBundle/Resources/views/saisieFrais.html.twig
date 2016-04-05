@@ -1,0 +1,57 @@
+{#Saisie des forfaits#}
+{% extends '@GSBApp/layout.html.twig' %}
+{% block title %}{{ parent()}}SaisieFrais{% endblock %}
+
+{% block body %}
+    <br>
+    <legend class="text-center">Enregistrement de vos frais</legend>
+    {% include 'GSBAppBundle::formFraisForfait.html.twig' %}
+
+    {#Render de la vue. Plus performant et flexible que l'include simple, un controlleur pour la vue inclue #}
+    <div id="table-bordered">
+        <legend class="text-center">Descriptif des frais hors forfait</legend>
+        {{ render(controller('GSBAppBundle:FraisHorsForfait:liste', {'suppression' : 'true' })) }}
+        <br>
+    </div>
+
+
+    {{ form_start(formHorsForfait,{'attr':{'class':'form-horizontal sample shadow-z-3','novalidate':'novalidate'}}) }}
+    {{ form_errors(formHorsForfait) }}
+
+    <div class="form-group">
+        {{ form_errors(formHorsForfait.date,{'attr':{'class':'alert alert-danger'}}) }}
+        {{ form_label(formHorsForfait.date,"Date", {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+        <div class="col-sm-4">
+            {{ form_widget(formHorsForfait.date,{'attr':{'class':'form-control datePicker', 'readonly':'readonly'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_errors(formHorsForfait.libelle) }}
+        {{ form_label(formHorsForfait.libelle,"Libellé", {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+        <div class="col-sm-4">
+            {{ form_widget(formHorsForfait.libelle,{'attr':{'class':'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_errors(formHorsForfait.montant) }}
+        {{ form_label(formHorsForfait.montant,"Montant", {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+        <div class="col-sm-4">
+            {{ form_widget(formHorsForfait.montant,{'attr':{'class':'form-control'}}) }}
+        </div>
+    </div>
+
+    <div style="display:none">
+        {{ form_widget(formHorsForfait.mois) }}
+        {{ form_widget(formHorsForfait.visiteur) }}
+    </div>
+
+    <div class="form-group">
+        <input style="float:right;" id="ajouterFraisHorsForfait" class="btn btn-primary btn-raised" type="submit" value="enregistrer"/>
+    </div>
+
+    {{ form_widget(formHorsForfait._token) }}
+    {{ form_end(formHorsForfait) }}
+
+{% endblock %}

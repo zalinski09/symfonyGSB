@@ -1,0 +1,32 @@
+{#Vue dediée aux datables des hors forfait#}
+
+    {#Si lignefraishorsforfait est vide on indique que c'est vide#}
+    {% if lignesfraisforfait | length == 0 %}
+        <div class="text-center">
+            <input class="btn btn-danger btn-raised" type="button" value="Vide"/>
+        </div>
+        {#Sinon c'est qu'on a des données et on les affiche#}
+    {% else %}
+
+        <table class="table-bordered" border="1">
+            <thead>
+            <tr>
+                {% for lignefraisforfait in lignesfraisforfait %}
+                    <th>{{lignefraisforfait.fraisforfait.libelle  }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                {% for lignefraisforfait in lignesfraisforfait %}
+                    <td>{{ lignefraisforfait.quantite }}</td>
+                {% endfor %}
+            </tr>
+            </tbody>
+        </table>
+
+    {% endif %}
+
+
+

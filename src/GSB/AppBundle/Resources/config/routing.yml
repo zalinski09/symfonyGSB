@@ -1,0 +1,36 @@
+gsb_app_homepage:
+    path:     /
+    defaults: { _controller: GSBAppBundle:Default:index }
+    
+gsb_app_indexFrais:
+    path:     /Frais
+    defaults: { _controller: GSBAppBundle:FraisForfait:index }
+
+gsb_app_listeHorsForfait:
+    path:    /listeHorsForfait
+    defaults : {_controller: GSBAppBundle:FraisHorsForfait:liste}
+
+gsb_app_listeForfait:
+     path:    /listeForfait
+     defaults : {_controller: GSBAppBundle:FraisForfait:liste}
+
+gsb_app_deleteHorsForfait:
+    path:    /suppression/{id}
+    defaults: {_controller: GSBAppBundle:FraisHorsForfait:delete}
+
+gsb_app_ficheDeFrais:
+    path:    /ficheDeFrais
+    defaults: {_controller: GSBAppBundle:FicheFrais:index}
+
+gsb_app_validerFicheDeFrais:
+    path:    /validerFiche
+    defaults: {_controller: GSBAppBundle:FicheFrais:valider}
+
+gsb_app_refuserFicheDeFrais:
+    path:    /refuserFiche/{id}
+    defaults: {_controller: GSBAppBundle:FicheFrais:refuser}
+
+gsb_app_suiviFicheDeFrais:
+    path:    /suiviPaiement
+    defaults: {_controller: GSBAppBundle:FicheFrais:suivi}
+    

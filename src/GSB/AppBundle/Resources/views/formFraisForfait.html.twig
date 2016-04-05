@@ -1,0 +1,53 @@
+{#Form des frais forfaitisés#}
+{% if is_granted('ROLE_COMPTABLE') and ficheFraisConcernee is null %}
+    {% do form.lignesfraisForfait.setRendered %}
+    {% else %}
+    {{ form_start(form,{'attr':{'class':'form-horizontal sample shadow-z-3','novalidate':'novalidate'}}) }}
+    {{ form_errors(form) }}
+    {% for lignefraisForfait in form.lignesfraisForfait  %}
+        <div class="form-group">
+            {{ form_errors(lignefraisForfait.quantite) }}
+            {{ form_label(lignefraisForfait.quantite,lignefraisForfait.fraisforfait.vars.data.libelle, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+            <div class="col-sm-4">
+                {{ form_widget(lignefraisForfait.quantite,{'attr':{'class':'form-control'}}) }}
+            </div>
+            <div style="display:none">
+                {{ form_widget(lignefraisForfait.fraisforfait) }}
+                {{ form_widget(lignefraisForfait.visiteur) }}
+                {{ form_widget(lignefraisForfait.mois ) }}
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{#####################TEST sur le ROLE#################################################
+- SI on est un user
+  : on affiche le total du mois et la possiblite d'enregistrer le forfait (de persist)
+- SINON SI on est un comptable
+  - ET SI on est bien sur une fiche CLOTUREE (donc modify = true)
+  : on affiche la possiblite d'enregistrer les eventuelles modifications
+- Sinon, on empêche la possibilité d'enregistrer et on l'affiche
+#######################################################################################}
+
+{% if is_granted('ROLE_USER') %}
+    <div style="align:center" class="form-group btn btn-danger">Total du mois : {{ total }} €</div>
+
+    <div class="form-group">
+        <input style="float:right" class="btn btn-primary btn-raised" type="submit" value="enregistrer"/>
+    </div>
+{% elseif is_granted('ROLE_COMPTABLE') %}
+    {% if ficheFraisConcernee %}
+        {% if modify %}
+            <div class="form-group">
+                <input style="float:right" class="btn btn-primary btn-raised" type="submit" value="enregistrer"/>
+            </div>
+        {% else  %}
+            <div style="float:right" class="btn btn-danger">Impossible de modifier cette fiche : {{ ficheFraisConcernee.etat.libelle }}</div>
+        {% endif %}
+    {% else %}
+        <div style="float:right" class="btn btn-danger">Ce visiteur n'a pas de fiche de frais</div>
+    {% endif %}
+
+{% endif %}
+{{ form_widget(form._token) }}
+    {{ form_end(form) }}

@@ -1,0 +1,37 @@
+{#Vue dediée aux datables des hors forfait#}
+
+    {#Si lignefraishorsforfait est vide on indique que c'est vide#}
+    {% if lignesfraishorsforfait | length == 0 %}
+        <div class="text-center">
+            <input class="btn btn-danger btn-raised" type="button" value="Vide"/>
+        </div>
+    {#Sinon c'est qu'on a des données et on les affiche#}
+    {% else %}
+
+        <table class="table-bordered" border="1">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Libellé</th>
+                <th>Montant</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for lignefraishorsforfait in lignesfraishorsforfait %}
+                <tr>
+
+                    <td>{{ lignefraishorsforfait.date|date('Y-m-d') }}</td>
+                    <td>{{ lignefraishorsforfait.libelle }}</td>
+                    <td>{{ lignefraishorsforfait.montant }}</td>
+                    <td> <a href="{{ path('gsb_app_deleteHorsForfait', {'id':lignefraishorsforfait.id}) }}">Supprimer</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    {% endif %}
+
+
+

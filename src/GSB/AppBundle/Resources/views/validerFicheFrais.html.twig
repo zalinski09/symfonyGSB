@@ -1,0 +1,51 @@
+{#Vue déstinée à la validation par le comptable
+Donc accessible que par un comptable#}
+{% extends 'GSBAppBundle::layout.html.twig' %}
+{% block title %}{{ parent()}}Validation{% endblock %}
+
+{% block body %}
+
+    {{ form_start(formSelect)}}
+    {{ form_errors(formSelect) }}
+    <div class="well">
+        {{ form_widget(formSelect.visiteur,{'attr':{'class':'form-control select'}}) }}
+
+        {{ form_label(formSelect.mois,'Mois', {'label_attr':{'class':'col-sm-4 control-label '}}) }}
+        <div class="sample">
+            {{ form_widget(formSelect.mois,{'attr':{'class':'form-control select '}}) }}
+        </div>
+
+            <div class="form-group">
+                <input  class="btn btn-primary btn-raised" type="submit" value="enregistrer"/>
+            </div>
+
+
+        {{ form_widget(formSelect._token) }}
+        {{ form_end(formSelect) }}
+    </div>
+
+    {{ form_end(formSelect) }}
+
+    {% if lignesfraisforfait | length == 0 %}
+        <div class="text-center">
+            <input class="btn btn-danger btn-raised" type="button" value="Pas de données fraisforfait à afficher "/>
+        </div>
+        {#Sinon c'est qu'on a des données et on les affiche#}
+    {% else %}
+        {% include 'GSBAppBundle::formFraisForfait.html.twig' with{'form': formFrais, 'modify': modify, 'ficheFraisConcernee' : ficheFraisConcernee } %}
+    {% endif %}
+
+    <div id="table-bordered">
+        {% include 'GSBAppBundle::dataTablesDossierHorsForfait.html.twig' with{'lignesfraishorsforfait': lignesfraishorsforfait, 'modify' : modify, 'ficheFraisConcernee' : ficheFraisConcernee} %}
+    </div>
+
+    {% if is_granted('ROLE_COMPTABLE') and ficheFraisConcernee is null %}
+        <div class="text-center">
+            <input class="btn btn-danger btn-raised" type="button" value="Pas de données fiche frais à afficher"/>
+        </div>
+        {#Sinon c'est qu'on a des données et on les affiche#}
+    {% else %}
+        {% include 'GSBAppBundle::ficheFraisForm.html.twig' with{'form': formValidation, 'modify': modify } %}
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "GSBAppBundle::layout.html.twig" %}
+
+{% block body %}
+
+  {# S'il y a une erreur, on affiche message d'erreur #}
+  {% if error %}
+    <div class="alert alert-error">{{ error.message }}</div>
+  {% endif %}
+
+  {# Le formulaire, avec URL de soumission vers la route « login_check »  #}
+    
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <form action="{{ path('login_check') }}" method="post">
+                        </br>
+                        </br>
+                        <label for="username"></label>
+                        <span class="input-group-addon" id="sizing-addon2">Login :</span>
+                        <input type="text" id="username" name="_username" value="{{ last_username }}" />
+                        </br>
+                        <label for="password"></label>
+                        <span class="input-group-addon" id="sizing-addon2">Mot de passe :</span>
+                        <input type="password" id="password" name="_password" />
+                        </br>
+                        </br>
+                        <input class="btn btn-info" type="submit" value="Connexion" />
+                    </form>
+                </div>
+            </div>
+        </div>
+ 
+{% endblock %}
+

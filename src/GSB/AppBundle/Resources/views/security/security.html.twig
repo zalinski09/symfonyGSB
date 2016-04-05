@@ -1,0 +1,15 @@
+{#Vue déstinée à l'affichage d'un message
+d'erreur lorsque l'utilisateur qui souhaite accéder
+à une page n'a pas le bon rôle
+#}
+{% extends 'GSBAppBundle::layout.html.twig' %}
+
+{% block body %}
+
+<div class="text-center">
+
+    <h3>Vous ne pouvez pas accéder à cette page avec votre statut.</h3>
+
+</div>
+
+{% endblock %}

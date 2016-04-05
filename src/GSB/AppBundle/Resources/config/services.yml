@@ -1,0 +1,4 @@
+services:
+    gsb_app.fichefrais:
+        class: GSB\AppBundle\Service\FicheFraisService
+        arguments: [@service_container]

@@ -1,0 +1,47 @@
+{#Vue déstinée à la validation par le comptable
+Donc accessible que par un comptable#}
+
+
+    {{ form_start(form,{'attr':{'class':'form-horizontal sample shadow-z-3','novalidate':'novalidate'}}) }}
+{{ form_errors(form) }}
+<div class="form-group">
+    {{ form_errors(form.nbjustificatifs) }}
+    {{ form_label(form.nbjustificatifs, 'Justificatifs', {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+    <div class="col-sm-4">
+        {{ form_widget(form.nbjustificatifs, {'attr':{'class':'form-control'}}) }}
+    </div>
+</div>
+
+<div class="form-group">
+    {{ form_errors(form.montantvalide) }}
+    {{ form_label(form.montantvalide,'Montant', {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+    <div class="col-sm-4">
+        {{ form_widget(form.montantvalide, {'attr':{'class':'form-control'}}) }}
+    </div>
+</div>
+
+<div class="form-group">
+    {{ form_errors(form.etat) }}
+    {{ form_label(form.etat, 'Etat', {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+    <div class="col-sm-4">
+        {{ form_widget(form.etat,{'attr':{'class':'form-control'}}) }}
+    </div>
+</div>
+
+{% if modify %}
+    <div class="form-group">
+        <input  class="btn btn-primary btn-raised" type="submit" value="enregistrer"/>
+    </div>
+{% endif %}
+
+<div style="display: none">
+    {{ form_row(form.mois) }}
+    {{ form_row(form.visiteur) }}
+    {{ form_row(form.datemodif) }}
+</div>
+
+
+
+
+{{ form_widget(form._token) }}
+    {{ form_end(form) }}

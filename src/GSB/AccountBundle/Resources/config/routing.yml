@@ -1,0 +1,3 @@
+gsb_account_homepage:
+    path:     /hello
+    defaults: { _controller: GSBAccountBundle:Default:index }
