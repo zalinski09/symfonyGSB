@@ -1,57 +1,53 @@
 {#Menu de l'application#}
-<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
-    <nav class="container topnav">
-        <nav class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand topnav" href="{{ path('gsb_app_homepage') }}">GSB - Gestion de vos frais </a>
-        </nav>
-
-        <nav id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Fiche de frais <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-
-                        {% if is_granted('ROLE_USER') %}
-                            <li><a href="{{ path('gsb_app_indexFrais') }}">Enregistrer nouvelle</a></li>
-                            <li><a href="{{ path('gsb_app_ficheDeFrais') }}">Consultation</a></li>
-                        {% endif %}
-
-                        {% if is_granted('ROLE_COMPTABLE') %}
-                            <li><a href="{{ path('gsb_app_validerFicheDeFrais') }}">Validation</a></li>
-                        {% endif %}
-
-                    </ul>
-                </li>
-                {% if is_granted('ROLE_COMPTABLE') %}
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Paiement <b class="caret"></b></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ path('gsb_app_suiviFicheDeFrais') }}">Suivis paiement</a></li>
-                    </ul>
-                </li>
-                {% endif %}
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                {% if is_granted('ROLE_USER') %}
-                    <li><a href="#">Bienvenue visiteur {{ app.user.login }}  </a></li>
-                {% endif %}
-                <li>
-                    {% if app.user %}
-                        <a href="{{ path('logout') }}"> Se déconnecter</a>
-                    {% else %}
-                        <li><a href="{{ path('login') }}">Connectez vous</a></li>
+                </button>
+                <a class="navbar-brand" href="{{ path('gsb_app_homepage') }}">GSB - Gestion des frais </a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    {% if is_granted('ROLE_USER') %}
+                        <li><a href="{{ path('gsb_app_indexFrais') }}">Enregistrer Frais</a></li>
+                        <li><a href="{{ path('gsb_app_ficheDeFrais') }}">Consulter Frais</a></li>
                     {% endif %}
-                </li>
-            </ul>
-
-
-        </nav><!--/.nav-collapse -->
+                    {% if is_granted('ROLE_COMPTABLE') %}
+                        <li><a href="{{ path('gsb_app_validerFicheDeFrais') }}">Validation Frais</a></li>
+                    {% endif %}
+                    {% if is_granted('ROLE_COMPTABLE') %}
+                        <li><a href="{{ path('gsb_app_suiviFicheDeFrais') }}">Suivis paiement</a></li>
+                    {% endif %}
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if is_granted('ROLE_USER') %}
+                        <li class="active"><a href="#">Bienvenue  {{ app.user.login }}  </a></li>
+                    {% endif %}
+                    <li>
+                        {% if app.user %}
+                            <a href="{{ path('logout') }}">Se Déconnecter</a>
+                        {% else %}
+                            <a href="{{ path('login') }}">Se Connecter</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
     </nav>
-</nav>
+
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>                    

@@ -1,5 +1,4 @@
-{#Vue déstinée à la validation par le comptable
-Donc accessible que par un comptable#}
+{#Vue comptable pour la validation des frais#}
 {% extends 'GSBAppBundle::layout.html.twig' %}
 {% block title %}{{ parent()}}Validation{% endblock %}
 
@@ -28,20 +27,20 @@ Donc accessible que par un comptable#}
 
     {% if lignesfraisforfait | length == 0 %}
         <div class="text-center">
-            <input class="btn btn-danger btn-raised" type="button" value="Pas de données fraisforfait à afficher "/>
+            <input class="alert alert-danger" type="button" value="Pas de données fraisforfait à afficher "/>
         </div>
-        {#Sinon c'est qu'on a des données et on les affiche#}
+        {#Sinon données existantes et on affiche#}
     {% else %}
         {% include 'GSBAppBundle::formFraisForfait.html.twig' with{'form': formFrais, 'modify': modify, 'ficheFraisConcernee' : ficheFraisConcernee } %}
     {% endif %}
 
-    <div id="table-bordered">
+    <div class="table table-bordered table-hover">
         {% include 'GSBAppBundle::dataTablesDossierHorsForfait.html.twig' with{'lignesfraishorsforfait': lignesfraishorsforfait, 'modify' : modify, 'ficheFraisConcernee' : ficheFraisConcernee} %}
     </div>
 
     {% if is_granted('ROLE_COMPTABLE') and ficheFraisConcernee is null %}
         <div class="text-center">
-            <input class="btn btn-danger btn-raised" type="button" value="Pas de données fiche frais à afficher"/>
+            <input class="alert alert-danger" type="button" value="Pas de données fiche frais à afficher"/>
         </div>
         {#Sinon c'est qu'on a des données et on les affiche#}
     {% else %}

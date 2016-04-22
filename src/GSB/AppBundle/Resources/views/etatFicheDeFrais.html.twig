@@ -34,12 +34,12 @@
 
     <div class="well">
         <h4><span class="label label-default">Eléments forfaitisés</span></h4>
-        <div id="table-bordered">
+        <div class="table table-bordered table-hover">
             {% include 'GSBAppBundle::dataTablesDossierForfait.html.twig' with{'lignesfraisforfait': lignefraisforfait} %}
         </div>
 
         <h4><span class="label label-default">Descriptif des éléments hors forfait</span></h4>
-        <div id="table-bordered">
+        <div class="table table-bordered table-hover">
             {% include 'GSBAppBundle::dataTablesDossierHorsForfait.html.twig' with{'lignesfraishorsforfait': lignesfraishorsforfait, 'suppression': suppression} %}
         </div>
     </div>

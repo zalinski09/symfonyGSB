@@ -8,7 +8,7 @@
     {% include 'GSBAppBundle::formFraisForfait.html.twig' %}
 
     {#Render de la vue. Plus performant et flexible que l'include simple, un controlleur pour la vue inclue #}
-    <div id="table-bordered">
+    <div class="table table-bordered table-hover">
         <legend class="text-center">Descriptif des frais hors forfait</legend>
         {{ render(controller('GSBAppBundle:FraisHorsForfait:liste', {'suppression' : 'true' })) }}
         <br>
@@ -48,7 +48,7 @@
     </div>
 
     <div class="form-group">
-        <input style="float:right;" id="ajouterFraisHorsForfait" class="btn btn-primary btn-raised" type="submit" value="enregistrer"/>
+        <input class="btn btn-primary btn-raised" type="submit" value="enregistrer"/>
     </div>
 
     {{ form_widget(formHorsForfait._token) }}

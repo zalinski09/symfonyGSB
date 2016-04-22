@@ -51,7 +51,7 @@ class FicheFraisService {
         if(!$ficheDeFrais){
             /** @var FicheFrais $moisFicheFraisPrecedent */
             $moisFicheFraisPrecedent = $this->em
-                ->getRepository('GSBAppBundle:Fichefrais')
+                ->getRepository('GSBAppBundle:FicheFrais')
                 ->getMaxMois(array(
                     'visiteur' => $visiteur,
                 ));

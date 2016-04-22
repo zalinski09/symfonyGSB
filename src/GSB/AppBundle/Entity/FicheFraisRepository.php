@@ -1,6 +1,6 @@
 <?php
 
-namespace GSB\AppBundle\Repository;
+namespace GSB\AppBundle\Entity;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;

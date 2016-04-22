@@ -53,7 +53,7 @@ class FicheFraisType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-//            'data_class' => 'GSB\AppBundle\Entity\FicheFrais'
+            'data_class' => 'GSB\AppBundle\Entity\FicheFrais'
         ));
     }
 
@@ -62,7 +62,7 @@ class FicheFraisType extends AbstractType
      */
     public function getName()
     {
-        return 'gsb_appbundle_Fichefrais';
+        return 'gsb_appbundle_FicheFrais';
     }
 
     /**

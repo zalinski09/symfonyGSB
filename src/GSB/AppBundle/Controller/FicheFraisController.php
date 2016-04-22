@@ -65,7 +65,7 @@ class FicheFraisController extends Controller {
                     'visiteur' => $visiteur)
             );
 
-            $lignesFraisHorsForfait = $em->getRepository('GSBAppBundle:Lignefraishorsforfait')->findBy(array(
+            $lignesFraisHorsForfait = $em->getRepository('GSBAppBundle:LigneFraisHorsForfait')->findBy(array(
                     'mois' => $formFicheFrais->get('mois')->getData(),
                     'visiteur'=>$visiteur)
             );
@@ -83,7 +83,7 @@ class FicheFraisController extends Controller {
 
         return $this->render('GSBAppBundle::etatFicheDeFrais.html.twig', array(
             'form' => $formFicheFrais->createView(),
-            'LigneFraisForfait' => $ligneFraisForfait,
+            'lignefraisforfait' => $ligneFraisForfait,
             'lignesfraishorsforfait' => $lignesFraisHorsForfait,
             'mois' => $mois,
             'etat' => $etat,
@@ -112,7 +112,7 @@ class FicheFraisController extends Controller {
         }
         //Initialisations
         $em = $this->getDoctrine()->getManager();
-        $modify = false; //Booleen pour autoriser dans le cas d'un comptable la modif ou non
+        $modify = true; //Booleen pour autoriser dans le cas d'un comptable la modif ou non
         $ficheFraisSelectionnee = $lignesfraisforfait = $lignesfraishorsforfait = $formValidationFicheFrais =  $ficheFraisValidation = $visiteur = null;
         $formSelectVisiteur = $this->get('form.factory')->create(new FichesFraisType($em));
         $formContainer = $this->get('form.factory')->create(new LigneFraisForfaitContainerType());

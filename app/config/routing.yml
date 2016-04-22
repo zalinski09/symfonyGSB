@@ -6,10 +6,6 @@ gsb_app:
     resource: "@GSBAppBundle/Resources/config/routing.yml"
     prefix:   /
 
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
-
 login:
     pattern:   /login
     defaults:  { _controller: GSBAccountBundle:Security:login }

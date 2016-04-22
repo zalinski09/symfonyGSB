@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * LigneFraisForfait
  *
  * @ORM\Table(name="lignefraisforfait")
- * @ORM\Entity(repositoryClass="GSB\AppBundle\Repository\LigneFraisForfaitRepository")
+ * @ORM\Entity(repositoryClass="GSB\AppBundle\Entity\LigneFraisForfaitRepository")
  */
 class LigneFraisForfait
 {

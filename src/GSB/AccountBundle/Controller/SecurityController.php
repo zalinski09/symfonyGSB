@@ -40,5 +40,8 @@ class SecurityController extends AccountController {
             'error'         => $error,
         ));
     }
-
+    public function getParent()
+    {
+    return 'FOSUserBundle';
+    }
 } 

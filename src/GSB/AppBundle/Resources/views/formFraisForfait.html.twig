@@ -30,22 +30,19 @@
 #######################################################################################}
 
 {% if is_granted('ROLE_USER') %}
-    <div style="align:center" class="form-group btn btn-danger">Total du mois : {{ total }} €</div>
+    <div style="align:center" class="form-group alert alert-danger">Total du mois : {{ total }} €</div>
 
     <div class="form-group">
-        <input style="float:right" class="btn btn-primary btn-raised" type="submit" value="enregistrer"/>
+        <input class="btn btn-primary btn-raised" type="submit" value="enregistrer"/>
     </div>
 {% elseif is_granted('ROLE_COMPTABLE') %}
     {% if ficheFraisConcernee %}
-        {% if modify %}
-            <div class="form-group">
-                <input style="float:right" class="btn btn-primary btn-raised" type="submit" value="enregistrer"/>
-            </div>
-        {% else  %}
-            <div style="float:right" class="btn btn-danger">Impossible de modifier cette fiche : {{ ficheFraisConcernee.etat.libelle }}</div>
-        {% endif %}
-    {% else %}
-        <div style="float:right" class="btn btn-danger">Ce visiteur n'a pas de fiche de frais</div>
+     
+        <div class="form-group">
+            <input class="btn btn-primary btn-raised" type="submit" value="enregistrer"/>
+        </div>
+    {% else  %}
+        <div style="float:right" class="alert alert-danger">Impossible de modifier cette fiche : {{ ficheFraisConcernee.etat.libelle }}</div>
     {% endif %}
 
 {% endif %}

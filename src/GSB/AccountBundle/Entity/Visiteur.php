@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * Visiteur
  *
  * @ORM\Table(name="visiteur")
- * @ORM\Entity(repositoryClass="GSB\AccountBundle\Repository\VisiteurRepository")
+ * @ORM\Entity
  */
 class Visiteur implements UserInterface,  \Serializable
 {

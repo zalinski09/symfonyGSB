@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * Comptable
  *
  * @ORM\Table(name="comptable")
- * @ORM\Entity(repositoryClass="GSB\AccountBundle\Repository\ComptableRepository")
+ * @ORM\Entity
  */
 class Comptable implements UserInterface,  \Serializable
 {

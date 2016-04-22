@@ -5,16 +5,13 @@
     <title>{% block title %}Intranet du Laboratoire Galaxy-Swiss Bourdin{% endblock %}</title>
 
     {% stylesheets filter='cssrewrite'
-    'bundles/gsb/css/bootstrap.min.css'
-    'bundles/gsb/css/landing-page.css'
-    'bundles/gsb/font-awesome/css/font-awesome.min.css'
+    'bundles/gsbapp/css/*.css'
     %}
     <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
     {% endstylesheets %}
 
-    {% javascripts 'bundles/gsb/js/jquery.js'
-    'bundles/gsb/js/bootstrap.min.js'
-    'bundles/gsb/js/*.js'
+    {% javascripts
+    'bundles/gsbapp/js/*.js'
     %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
@@ -27,8 +24,8 @@
 {% endblock %}
 
 
-<div class="row-fluid">
-
+<div class="row-fluid" >
+    
     <div class="col-sm-3">
 
     </div>
@@ -42,45 +39,7 @@
             {% endfor %}
         {%  endblock %}
         {% block body %}
-        <!-- Header -->
-        <a name="about"></a>
-        <div class="intro-header">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="intro-message">
-                            <h1>Galaxy Suisse Bourdin</h1>
-                            <h3>Bienvenue</h3>
-                            <hr class="intro-divider">
-                            <ul class="list-inline intro-social-buttons">
-                                {% if is_granted('ROLE_USER') %}
-                                    <li>
-                                        <a href="{{ path('gsb_app_indexFrais') }}" class="btn btn-default btn-lg"> <span class="network-name">Enregistrer nouvelle</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ path('gsb_app_ficheDeFrais') }}" class="btn btn-default btn-lg"> <span class="network-name">Consultation</span></a>
-                                    </li>
-                                {% endif %}
-                                {% if is_granted('ROLE_COMPTABLE') %}
-                                    <li>
-                                        <a href="{{ path('gsb_app_validerFicheDeFrais') }}" class="btn btn-default btn-lg"> <span class="network-name">Validation</a>
-                                    </li>
-                                {% endif %} 
-                                {% if is_granted('ROLE_COMPTABLE') %}             
-                                    <li>
-                                        <a href="{{ path('gsb_app_suiviFicheDeFrais') }}" class="btn btn-default btn-lg"> <span class="network-name">Suivis paiement</a>
-                                    </li>
-                                {% endif %} 
-                                <li>
-                                    <a href="#" class="btn btn-default btn-lg"> <span class="network-name">Linkedin</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            <!-- /.container -->
-            </div>
-        </div>
+        
         {% endblock %}
     </div>
 

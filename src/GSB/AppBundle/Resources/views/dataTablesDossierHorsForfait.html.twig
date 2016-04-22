@@ -3,12 +3,12 @@
     {#Si lignefraishorsforfait est vide on indique que c'est vide#}
     {% if lignesfraishorsforfait | length == 0 %}
         <div class="text-center">
-            <input class="btn btn-danger btn-raised" type="button" value="Pas de données horsforfait à afficher"/>
+            <input class="alert alert-danger" type="button" value="Pas de données horsforfait à afficher"/>
         </div>
         {#Sinon c'est qu'on a des données et on les affiche#}
     {% else %}
 
-        <table class="table-bordered" border="1">
+        <table class="table table-bordered table-hover">
             <thead>
             <tr>
                 <th>Date</th>
@@ -38,11 +38,7 @@
                         {% endif %}
                     {% endif %}
                     {% if is_granted('ROLE_COMPTABLE') %}
-                        {% if modify %}
                             <td><a href="{{ path('gsb_app_refuserFicheDeFrais', {'id':lignefraishorsforfait.id}) }}">Refuser frais</a></td>
-                        {% else %}
-                            <td>Action impossible : {{ ficheFraisConcernee.etat.libelle }}</td>
-                        {% endif %}
                     {% endif %}
                 </tr>
             {% endfor %}

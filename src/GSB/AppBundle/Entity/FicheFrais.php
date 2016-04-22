@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * FicheFrais
  * @ORM\Table(name="fichefrais", indexes={@ORM\Index(name="idEtat", columns={"idEtat"}), @ORM\Index(name="IDX_92D5AB081D06ADE3", columns={"idVisiteur"})})
- * @ORM\Entity(repositoryClass="GSB\AppBundle\Repository\FicheFraisRepository")
+ * @ORM\Entity(repositoryClass="GSB\AppBundle\Entity\FicheFraisRepository")
  */
 class FicheFrais
 {

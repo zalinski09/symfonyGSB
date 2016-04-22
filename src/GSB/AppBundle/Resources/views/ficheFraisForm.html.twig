@@ -1,5 +1,4 @@
-{#Vue déstinée à la validation par le comptable
-Donc accessible que par un comptable#}
+{#Vue comptable pour la validation des frais#}
 
 
     {{ form_start(form,{'attr':{'class':'form-horizontal sample shadow-z-3','novalidate':'novalidate'}}) }}
@@ -28,11 +27,11 @@ Donc accessible que par un comptable#}
     </div>
 </div>
 
-{% if modify %}
+
     <div class="form-group">
         <input  class="btn btn-primary btn-raised" type="submit" value="enregistrer"/>
     </div>
-{% endif %}
+
 
 <div style="display: none">
     {{ form_row(form.mois) }}
