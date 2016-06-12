@@ -1,45 +1,7 @@
-{#Vue suivi paiement fiches de frais / mois#}
 {% extends 'GSBAppBundle::layout.html.twig' %}
 {% block title %}{{ parent()}}Suivi{% endblock %}
 
-{% block body %}
 
-    {{ form_start(formFicheFraisValide) }}
-    {{ form_errors(formFicheFraisValide) }}
-
-    <div class="well">
-        {{ form_label(formFicheFraisValide.mois,'Selection du mois', {'label_attr':{'class':'col-sm-4 control-label '}}) }}
-        <div class="sample">
-            {{ form_widget(formFicheFraisValide.mois,{'attr':{'class':'form-control select'}}) }}
-        </div>
-        {{ form_label(formFicheFraisValide.visiteur,'Selection du visiteur', {'label_attr':{'class':'col-sm-4 control-label '}}) }}
-        <div class="sample">
-            {{ form_widget(formFicheFraisValide.visiteur,{'attr':{'class':'form-control select'}}) }}
-        </div>
-
-        <div class="form-group">
-            <input  class="btn btn-primary btn-raised" type="submit" value="consulter"/>
-        </div>
-        {{ form_widget(formFicheFraisValide._token) }}
-        {{ form_end(formFicheFraisValide) }}
-    </div>
-
-    {% if mois | length != 0 %}
-        {% set mois = mois|split('',4) %}
-        <h3><span class="label label-info">Fiche de frais du {{ mois[1] }} - {{ mois[0] }}</span></h3>
-        <span class="label label-info">Etat : {{ etat.libelle }} depuis le {{ dateModif }}</span><br>
-        {% if etat.id == 'VA' %}
-            <span class="label label-primary">Montant validé : {{ total }} €</span>
-            {% else %}
-                <span class="label label-warning">Montant non validé : {{ total }} €</span>
-        {% endif %}
-    {% endif %}
-
-    <div class="well">
-        <h4><span class="label label-default">Eléments forfaitisés</span></h4>
-        <div class="table table-bordered table-hover">
-            {% include 'GSBAppBundle::dataTablesDossierForfait.html.twig' with{'lignesfraisforfait': lignefraisforfait} %}
-        </div>
-    </div>
+{%  block body %}
 
 {% endblock %}

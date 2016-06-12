@@ -301,52 +301,9 @@ class FicheFraisController extends Controller {
             // Sinon on déclenche une exception « Accès interdit »
             return $this->render('GSBAppBundle:Security:security.html.twig');
         }
-        
-        //modif de base
-        //$em = $this->getDoctrine()->getManager();
-        //$formFicheFraisValide = $this->get('form.factory')->create(new FichesFraisType($em,'true'));
-        
-        //Initialisations
         $em = $this->getDoctrine()->getManager();
-        $ficheFraisSelectionnee = $lignesfraisforfait = $etat = $lignesfraishorsforfait = $formValidationFicheFrais =  $ficheFraisValidation = $visiteur = $mois = null;
-        $formFicheFraisValide = $this->get('form.factory')->create(new FichesFraisType($em));
-        $modify = true;
-        $total = 0;
+        $formFicheFraisValide = $this->get('form.factory')->create(new FichesFraisType($em,'true'));
 
-        if('POST' == $request->getMethod()) {
-
-            if ($request->request->has('gsb_appbundle_FichesFrais')) {
-                if ($formFicheFraisValide->handleRequest($request)->isValid()) {
-                    //Récuperation du visiteur et de la date choisi dans le form
-                    $lignesfraisforfait = new ArrayCollection();
-                    $dateSelectionee = $formFicheFraisValide->get('mois')->getData();
-                    $visiteur = $formFicheFraisValide->get('visiteur')->getData();
-                    /** @var FicheFrais $ficheFraisSelectionnee */
-                    $ficheFraisSelectionnee = $em->getRepository('GSBAppBundle:FicheFrais')->findOneBy(array('visiteur' => $visiteur, 'mois' => $dateSelectionee));
-
-                    if(!$ficheFraisSelectionnee)
-                    {
-                        $this->get('gsb_app.fichefrais')->verifyFicheDeFrais($visiteur,$dateSelectionee);
-                    }
-
-                    //Récuperation des fraisforfaits et horsforfaits correspondants au visiteur et à la date précédemment séléctionnés.
-                    $lignesfraisforfait = $this->get('gsb_app.fichefrais')->getFormCollectionLigneFrais($visiteur, $dateSelectionee);
-                    $lignesfraishorsforfait = $this->getDoctrine()->getRepository('GSBAppBundle:LigneFraisHorsForfait')->findBy(array('visiteur' => $visiteur, 'mois' => $dateSelectionee));
-                    $etat = $ficheFraisSelectionnee->getEtat();
-                }
-            }
-        }
-        return $this->render('GSBAppBundle::suiviPaiementFicheFrais.html.twig', array(
-            'formFicheFraisValide' => $formFicheFraisValide->createView(),
-            'lignefraisforfait' => $lignesfraisforfait,
-            'lignesfraishorsforfait' => $lignesfraishorsforfait,
-            'mois' => $mois,
-            'etat' => $etat,
-            'modify' => $modify,
-            'total' => $total
-        ));
-        //return $this->render('GSBAppBundle::suiviPaiementFicheFrais.html.twig', array(
-        //   'formFicheFraisValide' => $formFicheFraisValide->createView(),
-        //));
+        return $this->render('GSBAppBundle::suiviPaiementFicheFrais.html.twig');
     }
 }
