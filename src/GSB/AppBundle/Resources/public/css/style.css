@@ -1,0 +1,13 @@
+
+/**Feuille de style du design général **/
+
+
+body{
+    background-image: url('../../images/logo.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.datePicker {
+    cursor: pointer !important;
+}

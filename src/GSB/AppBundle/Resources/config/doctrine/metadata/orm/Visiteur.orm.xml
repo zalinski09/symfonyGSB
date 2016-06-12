@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Visiteur" table="visiteur">
+    <id name="id" type="string" column="id" length="4">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nom" type="string" column="nom" length="30" nullable="true"/>
+    <field name="prenom" type="string" column="prenom" length="30" nullable="true"/>
+    <field name="login" type="string" column="login" length="20" nullable="true"/>
+    <field name="mdp" type="string" column="mdp" length="20" nullable="true"/>
+    <field name="adresse" type="string" column="adresse" length="30" nullable="true"/>
+    <field name="cp" type="string" column="cp" length="5" nullable="true"/>
+    <field name="ville" type="string" column="ville" length="30" nullable="true"/>
+    <field name="dateembauche" type="date" column="dateEmbauche" nullable="true"/>
+  </entity>
+</doctrine-mapping>

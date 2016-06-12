@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Fichefrais" table="fichefrais">
+    <indexes>
+      <index name="idEtat" columns="idEtat"/>
+      <index name="IDX_92D5AB081D06ADE3" columns="idVisiteur"/>
+    </indexes>
+    <id name="mois" type="string" column="mois" length="6"/>
+    <id name="idvisiteur" association-key="true"/>
+    <field name="nbjustificatifs" type="integer" column="nbJustificatifs" nullable="true"/>
+    <field name="montantvalide" type="decimal" column="montantValide" precision="10" scale="2" nullable="true"/>
+    <field name="datemodif" type="date" column="dateModif" nullable="true"/>
+    <one-to-one field="idvisiteur" target-entity="Visiteur">
+      <join-columns>
+        <join-column name="idVisiteur" referenced-column-name="id"/>
+      </join-columns>
+    </one-to-one>
+    <many-to-one field="idetat" target-entity="Etat">
+      <join-columns>
+        <join-column name="idEtat" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-many field="idfraisforfait" target-entity="Fraisforfait" mapped-by="idvisiteur"/>
+  </entity>
+</doctrine-mapping>
